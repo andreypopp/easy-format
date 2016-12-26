@@ -1,57 +1,32 @@
 {
-    "name": "easy-format-actual",
-    "exportedEnvVars": {
-        "CAML_LD_LIBRARY_PATH": {
-            "global": true,
-            "resolveAsRelativePath": true,
-            "globalCollisionBehavior": "joinPath",
-            "val": "./_build/ocamlfind/lib/stublibs"
-        },
-        "FINDLIB": {
-            "global": true,
-            "resolveAsRelativePath": true,
-            "globalCollisionBehavior": "joinPath",
-            "val": "./_build/ocamlfind/lib"
-        },
-        "easy_format_installed": {
-            "global": true,
-            "globalCollisionBehavior": "clobber",
-            "val": "true"
-        },
-        "version": {
-            "global": true,
-            "globalCollisionBehavior": "clobber",
-            "val": "1.2.0"
-        },
-        "PATH": {
-            "global": true,
-            "resolveAsRelativePath": true,
-            "globalCollisionBehavior": "joinPath",
-            "val": "./_build/ocamlfind/bin"
-        },
-        "easy_format_version": {
-            "global": true,
-            "globalCollisionBehavior": "clobber",
-            "val": "1.2.0"
-        },
-        "easy_format_enable": {
-            "global": true,
-            "globalCollisionBehavior": "clobber",
-            "val": "enable"
-        }
-    },
+    "name": "easy-format",
     "version": "1.2.0",
     "dependencies": {
-        "substs": "https://github.com/yunxing/substs.git",
-        "@opam-alpha/ocamlfind": "*",
-        "nopam": "*",
-        "opam-installer-bin": "https://github.com/yunxing/opam-installer-bin.git",
-        "dependency-env": "*"
+        "ocamlfind": "andreypopp/ocamlfind#esy",
+        "opam-installer-bin": "andreypopp/opam-installer-bin"
     },
-    "scripts": {
-        "postinstall": "eval $(dependencyEnv) && nopam && make && make install && (opam-installer --prefix=$opam_prefix || true)"
+    "esy": {
+        "build": [
+            "make",
+            "make install",
+            "(opam-installer --prefix=$cur__install || true)"
+        ],
+        "exportedEnv": {
+            "easy_format_installed": {
+                "scope": "global",
+                "val": "true"
+            },
+            "easy_format_version": {
+                "scope": "global",
+                "val": "1.2.0"
+            },
+            "easy_format_enable": {
+                "scope": "global",
+                "val": "enable"
+            }
+        }
     },
     "peerDependencies": {
-        "@opam-alpha/ocaml": ">= 4.2.3"
+        "ocaml": "andreypopp/ocaml#esy"
     }
 }
